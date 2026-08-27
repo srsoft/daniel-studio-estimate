@@ -36,11 +36,24 @@ h1 em, h2 em { color: var(--coral); font-style: normal; }
 .hero-description { color: #53625b; font-size: 16px; line-height: 1.65; }
 .hero-note { margin-top: 30px; text-transform: none; }
 .hero-note span { margin-right: 8px; color: var(--coral); font-size: 17px; }
+.hero-cta { display: inline-flex; align-items: center; gap: 52px; min-height: 58px; margin-top: 34px; padding: 0 19px 0 22px; border: 1px solid var(--ink); background: var(--coral); color: var(--paper); font-size: 14px; font-weight: 600; transition: background .2s ease, transform .2s ease; }
+.hero-cta:hover { background: var(--ink); transform: translateY(-3px); }
+.hero-cta b { font-size: 22px; font-weight: 400; }
+.hero-side { position: absolute; inset: 0; pointer-events: none; }
 .hero-stamp { position: absolute; right: 11%; top: 72px; width: 156px; height: 156px; display: grid; place-items: center; border: 1px solid var(--coral); border-radius: 50%; color: var(--coral); transform: rotate(12deg); text-align: center; }
 .hero-stamp span { font-family: var(--mono); font-size: 10px; line-height: 1.4; letter-spacing: .12em; }
 .hero-stamp strong { font-weight: 500; }
 .hero-stamp i { position: absolute; bottom: 9px; font-size: 20px; font-style: normal; }
+.hero-index { position: absolute; right: 6.5%; bottom: 49px; display: grid; grid-template-columns: 30px 1fr; column-gap: 10px; row-gap: 2px; align-items: baseline; width: 165px; padding-top: 14px; border-top: 1px solid var(--line); }
+.hero-index span { grid-column: 1; color: var(--coral); font-family: var(--mono); font-size: 10px; }
+.hero-index strong { grid-column: 2; font-size: 13px; font-weight: 600; }
+.hero-index small { grid-column: 2; margin-bottom: 9px; color: var(--muted); font-family: var(--mono); font-size: 9px; }
 .workspace { padding-top: 48px; padding-bottom: 80px; }
+.workspace.is-landing { padding-top: 0; }
+.landing-teaser { display: grid; grid-template-columns: 190px 1fr auto; align-items: center; gap: 28px; min-height: 136px; padding: 25px 0; border-bottom: 1px solid var(--line); animation: question-reveal .5s ease both; }
+.landing-teaser > span { color: var(--coral); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; }
+.landing-teaser strong { font-size: 19px; font-weight: 500; letter-spacing: -.04em; line-height: 1.35; }
+.teaser-meta { display: flex; gap: 22px; color: var(--muted); font-family: var(--mono); font-size: 9px; }
 .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 52px; color: var(--muted); font-family: var(--mono); font-size: 10px; }
 .progress-row > div:not(.progress-line) { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 .progress-row span { display: grid; place-items: center; width: 27px; height: 27px; border: 1px solid var(--line); border-radius: 50%; }
@@ -48,7 +61,7 @@ h1 em, h2 em { color: var(--coral); font-style: normal; }
 .progress-row label { letter-spacing: .04em; }
 .progress-line { width: 72px; height: 1px; background: var(--line); }
 .progress-line span { display: block; height: 100%; border-radius: 0; background: var(--ink); transition: width .35s ease; }
-.step-panel, .result-panel { max-width: 1000px; margin: 0 auto; }
+.step-panel, .result-panel { max-width: 1000px; margin: 0 auto; animation: question-reveal .4s ease both; }
 .section-heading { display: grid; grid-template-columns: 120px minmax(300px, 1fr) 260px; align-items: end; gap: 24px; margin-bottom: 42px; }
 .section-heading h2, .result-intro h2 { margin-bottom: 0; font-size: clamp(32px, 4vw, 53px); font-weight: 600; letter-spacing: -.06em; line-height: 1.02; }
 .section-heading p { margin-bottom: 4px; color: var(--muted); font-size: 13px; line-height: 1.5; }
@@ -136,7 +149,13 @@ footer { display: flex; justify-content: space-between; max-width: none; padding
   h1 { font-size: 48px; }
   .desktop-break { display: none; }
   .hero-stamp { right: -34px; top: 35px; width: 130px; height: 130px; opacity: .8; }
+  .hero-cta { gap: 35px; margin-top: 29px; }
+  .hero-index { right: 22px; bottom: 24px; width: 145px; }
   .workspace { padding-top: 34px; }
+  .workspace.is-landing { padding-top: 0; }
+  .landing-teaser { display: block; min-height: 155px; padding: 25px 0; }
+  .landing-teaser strong { display: block; margin: 14px 0 22px; font-size: 17px; }
+  .teaser-meta { justify-content: space-between; gap: 5px; font-size: 8px; }
   .progress-row { margin-bottom: 38px; gap: 6px; }
   .progress-row label { display: none; }
   .progress-line { flex: 1; }

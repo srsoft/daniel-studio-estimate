@@ -83,7 +83,7 @@ const initialForm = {
 }
 
 function App() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
   const [form, setForm] = useState(initialForm)
   const [estimate, setEstimate] = useState(null)
 
@@ -108,7 +108,7 @@ function App() {
   const reset = () => {
     setForm(initialForm)
     setEstimate(null)
-    setStep(1)
+    setStep(0)
   }
 
   return (
@@ -127,18 +127,23 @@ function App() {
           <h1>막연한 아이디어를<br /><em>실행 가능한 숫자</em>로.</h1>
           <p className="hero-description">몇 가지 질문에 답하면 프로젝트의 예상 비용과 기간,<br className="desktop-break" /> 지금 먼저 만들어야 할 범위를 정리해 드립니다.</p>
           <div className="hero-note"><span>↳</span> 약 3분 · 회원가입 없이 시작</div>
+          {step === 0 && <button className="hero-cta" onClick={() => setStep(1)}>견적 산출하기 <b>↘</b></button>}
         </div>
-        <div className="hero-stamp" aria-hidden="true"><span>START<br />WITH<br /><strong>CLARITY</strong></span><i>✳</i></div>
+        <div className="hero-side">
+          <div className="hero-stamp" aria-hidden="true"><span>START<br />WITH<br /><strong>CLARITY</strong></span><i>✳</i></div>
+          {step === 0 && <div className="hero-index"><span>01</span><strong>범위</strong><small>Scope first</small><span>02</span><strong>공수</strong><small>Effort next</small><span>03</span><strong>숫자</strong><small>Clear result</small></div>}
+        </div>
       </section>
 
-      <section className="workspace">
-        <div className="progress-row">
+      <section className={`workspace ${step === 0 ? 'is-landing' : ''}`}>
+        {step === 0 && <div className="landing-teaser"><span>HOW IT WORKS</span><strong>질문에 답하고, 범위를 확인하고,<br />다음 행동을 결정하세요.</strong><div className="teaser-meta"><span>01 / 프로젝트 선택</span><span>02 / 상세 내용</span><span>03 / 예상 견적</span></div></div>}
+        {step > 0 && <div className="progress-row">
           <div><span className={step >= 1 ? 'active' : ''}>01</span><label>프로젝트 선택</label></div>
           <div className="progress-line"><span style={{ width: step === 1 ? '0%' : '100%' }} /></div>
           <div><span className={step >= 2 ? 'active' : ''}>02</span><label>상세 내용</label></div>
           <div className="progress-line"><span style={{ width: step === 3 ? '100%' : '0%' }} /></div>
           <div><span className={step === 3 ? 'active' : ''}>03</span><label>예상 견적</label></div>
-        </div>
+        </div>}
 
         {step === 1 && <StepOne form={form} update={update} next={() => setStep(2)} />}
         {step === 2 && <StepTwo form={form} update={update} back={() => setStep(1)} submit={createEstimate} />}
